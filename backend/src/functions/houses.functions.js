@@ -21,4 +21,8 @@ function findHouse(prompt) {
   return houseMatch;
 }
 
-module.exports = { findHouse };
+function sendAllHouses() {
+  return housesInfo;
+}
+
+module.exports = { findHouse, sendAllHouses };

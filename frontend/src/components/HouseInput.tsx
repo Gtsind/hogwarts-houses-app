@@ -1,30 +1,12 @@
-import { useState, useEffect } from "react";
+type HouseInputProps = {
+  userInput: string;
+  onChangeInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-export default function HouseInput() {
-  const [userInput, setUserInput] = useState("");
-
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setUserInput(event.target.value);
-  }
-
-  useEffect(() => {
-    async function fetchHouses() {
-      if (!userInput.trim()) return;
-
-      try {
-        const response = await fetch(
-          `http://localhost:3000/houses?name=${userInput}`
-        );
-        const resData = await response.json();
-        console.log(resData.reply.founder);
-      } catch (error) {
-        console.log("Error >>", error);
-      }
-    }
-
-    fetchHouses();
-  }, [userInput]);
-
+export default function HouseInput({
+  userInput,
+  onChangeInput,
+}: HouseInputProps) {
   return (
     <div className="flex justify-center mt-20">
       <input
@@ -32,7 +14,7 @@ export default function HouseInput() {
         type="text"
         placeholder="Search houses"
         value={userInput}
-        onChange={handleChange}
+        onChange={onChangeInput}
       />
     </div>
   );
