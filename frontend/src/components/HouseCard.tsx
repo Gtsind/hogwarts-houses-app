@@ -17,10 +17,6 @@ export default function HouseCard({ house }: HouseCardProps) {
   const areBothColorsValid =
     availableColors.includes(startColor) && availableColors.includes(endColor);
 
-  function handleTraitChange(value: string) {
-    setTraitInput(value);
-  }
-
   function handleFilterTraits(filter: string) {
     const filtered = house.traits.filter((trait) =>
       trait.toLowerCase().includes(filter.trim().toLowerCase())
@@ -30,7 +26,7 @@ export default function HouseCard({ house }: HouseCardProps) {
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value;
-    handleTraitChange(newValue);
+    setTraitInput(newValue);
     handleFilterTraits(newValue);
   }
 
