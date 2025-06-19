@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { House } from "../shared/types/house.types.ts";
 
 type HouseCardProps = {
@@ -5,8 +6,28 @@ type HouseCardProps = {
 };
 
 export default function HouseCard({ house }: HouseCardProps) {
+  const [traitInput, setTraitInput] = useState<string>("");
+  const [filteredTraits, setFilteredTraits] = useState<string[]>(house.traits);
+
+  function handleTraitChange(value: string) {
+    setTraitInput(value);
+  }
+
+  function handleFilterTraits(filter: string) {
+    const filtered = house.traits.filter((trait) =>
+      trait.toLowerCase().includes(filter.trim().toLowerCase())
+    );
+    setFilteredTraits(filtered);
+  }
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const newValue = event.target.value;
+    handleTraitChange(newValue);
+    handleFilterTraits(newValue);
+  }
+
   return (
-    <div className="border border-gray-300 mt-2 mb-2 w-md rounded-md p-3">
+    <div className="border border-gray-300 mt-2 mb-2 w-sm rounded-md p-3">
       <div className="flex flex-row justify-between">
         <h1 className="text-2xl">
           <strong>{house.name}</strong>
@@ -20,12 +41,14 @@ export default function HouseCard({ house }: HouseCardProps) {
         </p>
         <input
           type="text"
-          placeholder="Search house traits"
           className="border border-gray-300 p-2 mt-1 rounded-md h-7"
+          value={traitInput}
+          onChange={handleInputChange}
+          placeholder="Search house traits"
         />
       </div>
       <div className="flex flex-row flex-wrap gap-2">
-        {house.traits.map((trait) => (
+        {filteredTraits.map((trait) => (
           <button
             key={trait}
             className="text-xs h-6 p-1 mt-2 rounded-lg bg-black text-white"

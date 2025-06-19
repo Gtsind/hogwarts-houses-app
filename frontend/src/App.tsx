@@ -23,24 +23,10 @@ function App() {
   }
 
   useEffect(() => {
-    async function fetchOnLoad() {
-      try {
-        const response = await fetch("http://localhost:3000/houses");
-        const resData = await response.json();
-        const houseArray = mapResponseToHouses(resData.reply);
-        setHouses(houseArray);
-      } catch (error) {
-        console.log("Error >>", error);
-      }
-    }
-    fetchOnLoad();
-  }, []);
-
-  useEffect(() => {
     async function fetchHouses() {
       if (!userInput.trim()) {
         {
-          // If input is empty, fetch all houses again
+          // If input is empty, fetch all houses (on load app, or on input clear)
           try {
             const response = await fetch("http://localhost:3000/houses");
             const resData = await response.json();
