@@ -7,7 +7,7 @@ type HouseContainerProps = {
 
 export default function HouseContainer({ houses }: HouseContainerProps) {
   return (
-    <section className="flex flex-col justify-center items-center mt-4">
+    <section className="flex flex-col justify-center items-center mt-2">
       {houses.map((house) => (
         <HouseCard key={house.name} house={house} />
       ))}
