@@ -1,7 +1,7 @@
 import type { HouseApiResponse } from "../interfaces/house-api-response.interfaces.ts";
 import type { House } from "../types/house.types";
 
-const FAKE_DELAY = 1000;
+const FAKE_DELAY = 1500;
 
 export const sleep = (ms: number) => {
   return new Promise((resolve) => {

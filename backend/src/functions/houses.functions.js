@@ -3,22 +3,11 @@ const DEFAULT_RESPONSE = "Could not find any houses.";
 
 function findHouse(prompt) {
   const houseName = prompt.toLowerCase();
+  const matches = housesInfo.filter((house) =>
+    house.name.toLowerCase().includes(houseName)
+  );
 
-  let houseMatch = null;
-
-  for (let house of housesInfo) {
-    const { name } = house;
-
-    if (name.toLowerCase().includes(houseName)) {
-      houseMatch = house;
-    }
-  }
-
-  if (houseMatch === null) {
-    return DEFAULT_RESPONSE;
-  }
-
-  return houseMatch;
+  return matches.length ? matches : DEFAULT_RESPONSE;
 }
 
 function sendAllHouses() {

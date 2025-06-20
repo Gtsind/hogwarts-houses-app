@@ -12,10 +12,10 @@ export default function HouseContainer({
   isLoading,
 }: HouseContainerProps) {
   return (
-    <section className="flex flex-col justify-center items-center mt-2 mr-8">
+    <section className="flex flex-col justify-center items-center mt-2 mr-5">
       {isLoading && (
         <div className="flex h-40">
-          <SpinnerCircular color="black" />
+          <SpinnerCircular thickness={150} color="black" />
         </div>
       )}
       {!isLoading &&
