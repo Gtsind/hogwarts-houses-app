@@ -16,6 +16,7 @@ export function useFetchHouses(userInput: string) {
     const timer = setTimeout(() => {
       async function fetchHouses() {
         setIsLoading(true);
+        setHouseFound(true);
 
         try {
           const url = userInput.trim()

@@ -8,7 +8,7 @@ export default function HouseInput({
   onChangeInput,
 }: HouseInputProps) {
   return (
-    <div className="flex justify-center mt-20">
+    <div className="flex justify-start">
       <input
         className="border border-gray-300 p-2 rounded-md"
         type="text"
