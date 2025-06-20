@@ -1,77 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import HouseContainer from "./components/HouseContainer.tsx";
 import HouseInput from "./components/HouseInput.tsx";
-import type { House } from "./shared/types/house.types.ts";
-import type { HouseApiResponse } from "./shared/interfaces/house-api-response.interfaces.ts";
-import { sleep } from "./shared/util/sleep.ts";
-
-const FAKE_DELAY = 1000;
-
-function mapResponseToHouses(response: HouseApiResponse[]): House[] {
-  return response.map((house) => ({
-    name: house.name,
-    founder: house.founder,
-    houseColours: house.houseColours,
-    animal: house.animal,
-    traits: house.traits.map((trait) => trait.name),
-  }));
-}
+import { useFetchHouses } from "./hooks/useFetchHouses.ts";
 
 function App() {
   const [userInput, setUserInput] = useState<string>("");
-  const [houses, setHouses] = useState<House[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setUserInput(event.target.value);
-  }
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      async function fetchHouses() {
-        setIsLoading(true);
-        if (!userInput.trim()) {
-          // If input is empty, fetch all houses (on load app, or on input clear)
-          try {
-            const response = await fetch("http://localhost:3000/houses");
-            await sleep(FAKE_DELAY);
-            const resData = await response.json();
-            const houseArray = mapResponseToHouses(resData.reply);
-            console.log("On load >>>", houseArray);
-            setHouses(houseArray);
-          } catch (error) {
-            console.log("Error >>", error);
-          }
-
-          setIsLoading(false);
-
-          return;
-        }
-        setIsLoading(true);
-        try {
-          const response = await fetch(
-            `http://localhost:3000/houses?name=${userInput}`
-          );
-          await sleep(FAKE_DELAY);
-          const resData = await response.json();
-          const house = mapResponseToHouses([resData.reply]);
-          console.log("Reply <<<", house);
-          setHouses(house);
-        } catch (error) {
-          console.log("Error >>", error);
-        }
-
-        setIsLoading(false);
-      }
-      fetchHouses();
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [userInput]);
+  const { houses, isLoading, houseFound } = useFetchHouses(userInput);
 
   return (
     <>
-      <HouseInput userInput={userInput} onChangeInput={handleChange} />
+      <HouseInput
+        userInput={userInput}
+        onChangeInput={(event) => {
+          setUserInput(event.target.value);
+        }}
+      />
+      {!houseFound && (
+        <p className="text-center mt-20 font-bold">
+          No houses matched your search, please try again!
+        </p>
+      )}
       <HouseContainer houses={houses} isLoading={isLoading} />
     </>
   );
