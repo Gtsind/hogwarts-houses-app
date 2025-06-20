@@ -5,7 +5,7 @@ import {
 } from "../shared/util/functions.ts";
 import type { House } from "../shared/types/house.types.ts";
 
-const API_URL = "http://localhost:3000/houses";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export function useFetchHouses(userInput: string) {
   const [houses, setHouses] = useState<House[]>([]);
