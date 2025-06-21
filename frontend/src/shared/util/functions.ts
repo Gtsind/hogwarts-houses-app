@@ -1,5 +1,6 @@
 import type { HouseApiResponse } from "../interfaces/house-api-response.interfaces.ts";
 import type { House } from "../types/house.types";
+import { availableColors } from "./availableColors.ts";
 
 const FAKE_DELAY = 1500;
 
@@ -32,4 +33,16 @@ export async function fetchAvailableHouses(url: string) {
   }
 
   return resData;
+}
+
+export function getGradient(colors: string) {
+  const [startColor, endColor] = colors
+    .split(" and ")
+    .map((color) => color.toLowerCase());
+  const isValid =
+    availableColors.includes(startColor) && availableColors.includes(endColor);
+
+  return isValid
+    ? `linear-gradient(to right, ${startColor}, ${endColor})`
+    : `linear-gradient(to right, white, black)`;
 }

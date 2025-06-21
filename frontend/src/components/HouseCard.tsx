@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { House } from "../shared/types/house.types.ts";
-import { availableColors } from "../shared/util/availableColors.ts";
+import { getGradient } from "../shared/util/functions.ts";
 
 type HouseCardProps = {
   house: House;
@@ -10,24 +10,14 @@ export default function HouseCard({ house }: HouseCardProps) {
   const [traitInput, setTraitInput] = useState<string>("");
   const [filteredTraits, setFilteredTraits] = useState<string[]>(house.traits);
 
-  const [rawStartColor, rawEndColor] = house.houseColours.split(" and ");
-  const startColor = rawStartColor.toLowerCase();
-  const endColor = rawEndColor.toLowerCase();
-
-  const areBothColorsValid =
-    availableColors.includes(startColor) && availableColors.includes(endColor);
-
-  function handleFilterTraits(filter: string) {
-    const filtered = house.traits.filter((trait) =>
-      trait.toLowerCase().includes(filter.trim().toLowerCase())
-    );
-    setFilteredTraits(filtered);
-  }
-
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const newValue = event.target.value;
     setTraitInput(newValue);
-    handleFilterTraits(newValue);
+    setFilteredTraits(
+      house.traits.filter((trait) => {
+        trait.toLowerCase().includes(newValue.trim().toLowerCase());
+      })
+    );
   }
 
   return (
@@ -41,9 +31,7 @@ export default function HouseCard({ house }: HouseCardProps) {
       <div className="mt-4">
         <div
           style={{
-            backgroundImage: areBothColorsValid
-              ? `linear-gradient(to right, ${startColor}, ${endColor})`
-              : `linear-gradient(to right, white, black)`,
+            backgroundImage: getGradient(house.houseColours),
           }}
           className="h-4 rounded-sm mt-2"
         ></div>
