@@ -1,10 +1,11 @@
 # Hogwarts Houses App
 
 Live Demo : [hogwarts-houses-app](https://hogwarts-houses-app-bdyn.vercel.app)
+
 Backend API : [hogwarts-backend](https://hogwarts-backend-bq1b.onrender.com/houses)
 
 Hogwarts Houses App is a full-stack web application that allows users to explore information about the four Hogwarts houses.
-Users can search for houses by name (e.g gry, huff) and view details such as the founder, house colors and defining traits.
+Users can search for houses by name (e.g `gry`, `huff`) and view details such as the founder, house colors and defining traits.
 The backend serves houses data via a RESTful API including filtering logic based on query parameters.
 Built with React/TailwindCSS on the frontend and Node.js/Express on the backend.
 
@@ -75,29 +76,29 @@ Test cover:
 - Complete data retrieval
 - API route responses
 
-### Tech stack
+## Tech stack
 
-# Frontend
+### Frontend
 
 - React v19
 - Typescript
 - Vite
 - TailwindCSS
 
-# Backend
+### Backend
 
 - Node.js
 - Express
 - Jest
 
-# Deployment
+### Deployment
 
 - Frontend: Vercel
 - Backend: Render
 
 ## Optimization
 
-- Refactored backend to separate routing (houses.routes.js) from business logic (houses.functions.js)
+- Refactored backend to separate routing (`houses.routes.js`) from business logic (`houses.functions.js`)
 - Designed clean REST API with conditional response based on query parameters.
 - Debounced input to reduce redundant API calls and improve performance during typing.
 - Displayed loading indicators while waiting for server responses to enhance perceived responsiveness.
