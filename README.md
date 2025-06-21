@@ -76,6 +76,71 @@ Test cover:
 - Complete data retrieval
 - API route responses
 
+### File Structure (simplified)
+
+```
+hogwarts-houses-app
+ ┣ backend
+ ┃  ┣ data
+ ┃  ┃  ┗ housesInfo.js
+ ┃  ┣ src
+ ┃  ┃  ┣ functions
+ ┃  ┃  ┃  ┗ houses.functions.js
+ ┃  ┃  ┣ routes
+ ┃  ┃  ┃  ┗ houses.routes.js
+ ┃  ┃  ┣ services
+ ┃  ┃  ┃  ┗ houses.service.js
+ ┃  ┃  ┣ app.js
+ ┃  ┃  ┣ app.test.js
+ ┃  ┃  ┗ server.js
+ ┃  ┣ .env
+ ┃  ┣ package-lock.json
+ ┃  ┗ package.json
+ ┣ frontend
+ ┃  ┣ public
+ ┃  ┃  ┗ vite.svg
+ ┃  ┣ src
+ ┃  ┃  ┣ assets
+ ┃  ┃  ┃  ┗ react.svg
+ ┃  ┃  ┣ components
+ ┃  ┃  ┃  ┣ HouseCard.tsx
+ ┃  ┃  ┃  ┣ HouseContainer.tsx
+ ┃  ┃  ┃  ┗ HouseInput.tsx
+ ┃  ┃  ┣ hooks
+ ┃  ┃  ┃  ┗ useFetchHouses.ts
+ ┃  ┃  ┣ shared
+ ┃  ┃  ┃  ┣ interfaces
+ ┃  ┃  ┃  ┃  ┗ house-api-response.interfaces.ts
+ ┃  ┃  ┃  ┣ types
+ ┃  ┃  ┃  ┃  ┗ house.types.ts
+ ┃  ┃  ┃  ┗ util
+ ┃  ┃  ┃     ┣ availableColors.ts
+ ┃  ┃  ┃     ┗ functions.ts
+ ┃  ┃  ┣ App.tsx
+ ┃  ┃  ┣ index.css
+ ┃  ┃  ┣ main.tsx
+ ┃  ┃  ┗ vite-env.d.ts
+ ┃  ┣ .env.development
+ ┃  ┣ .env.production
+ ┃  ┣ .gitignore
+ ┃  ┣ eslint.config.js
+ ┃  ┣ index.html
+ ┃  ┣ package-lock.json
+ ┃  ┣ package.json
+ ┃  ┣ README.md
+ ┃  ┣ tsconfig.app.json
+ ┃  ┣ tsconfig.json
+ ┃  ┣ tsconfig.node.json
+ ┃  ┗ vite.config.ts
+ ┣ .gitignore
+ ┣ package-lock.json
+ ┣ package.json
+ ┗ README.md
+
+```
+
+<br>
+
 ## Tech stack
 
 ### Frontend
