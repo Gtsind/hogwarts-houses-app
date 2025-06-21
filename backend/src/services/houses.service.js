@@ -9,10 +9,10 @@ function sendResponse(req, res) {
   if (userPrompt) {
     const reply = findHouse(userPrompt);
 
-    res.status(200).json({ reply });
+    res.status(200).json(reply);
   } else {
     const reply = sendAllHouses();
-    res.status(200).json({ reply });
+    res.status(200).json(reply);
   }
 }
 

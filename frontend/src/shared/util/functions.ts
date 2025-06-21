@@ -31,5 +31,5 @@ export async function fetchAvailableHouses(url: string) {
     throw new Error("Failed to fetch houses");
   }
 
-  return resData.reply;
+  return resData;
 }
