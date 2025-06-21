@@ -14,9 +14,9 @@ export default function HouseCard({ house }: HouseCardProps) {
     const newValue = event.target.value;
     setTraitInput(newValue);
     setFilteredTraits(
-      house.traits.filter((trait) => {
-        trait.toLowerCase().includes(newValue.trim().toLowerCase());
-      })
+      house.traits.filter((trait) =>
+        trait.toLowerCase().includes(newValue.trim().toLowerCase())
+      )
     );
   }
 
